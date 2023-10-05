@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-char* GetOTP(){
-    //Code...
-    //Example OPT code return:
+char* GetPasswd(){
+
     return "1337";
 }
 
@@ -13,25 +12,28 @@ char* GetOTP(){
 // Run: gcc vul1.c -fno-stack-protector -o vul1
 // Then run the program: ./vul1
 
-int LoadDashboard(){}
+int LoadDashboard(){
+    printf("> To dashboard loading\n");
+    return 0;
+}
 
 int main(void)
 {
-    char *OTP = GetOTP();
-    char tryOTP[4];
+    char *passwd = GetPasswd();
     int root = 0;
+    char tryPasswd[4];
 
     for ( int tries = 0; tries < 3; tries++ ) {
-        printf("Enter OTP (Four digits): ");
-        gets(tryOTP);
+        printf("Enter Passwd (Four digits): ");
+        gets(tryPasswd);
     
         //Check if the user has root privileges or OPT:
-        if ( root || strcmp(tryOTP, OTP) == 0 ) {
+        if ( root || strcmp(tryPasswd, passwd) == 0 ) {
             printf("> Success, loading dashboard\n");
             LoadDashboard();
             return 1;
         } else {
-            printf ("> Incorrect OTP\n");
+            printf ("> Incorrect Passwd\n");
         }
      
         if ( tries >= 3 ) {
